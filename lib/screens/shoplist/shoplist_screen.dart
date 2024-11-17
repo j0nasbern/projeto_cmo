@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import '/data/data_storage.dart';
 
-class Recipe extends StatelessWidget {
+// <<NÃO IMPLEMENTADO>>
+// Classe ShopListScreen
+//
+// Contém o ecrã onde será exibida a lista de compras e
+// toda a informação rrelativa à mesma.
+class ShopListScreen extends StatelessWidget {
   DataStorage dataStorage;
 
-  Recipe(this.dataStorage);
+  ShopListScreen(this.dataStorage);
 
   @override
   Widget build(BuildContext context) {
@@ -15,19 +20,10 @@ class Recipe extends StatelessWidget {
             Navigator.of(context).pop();
           },
           icon: const Icon(Icons.arrow_back)),
-        title: const Text('Recipes'),
+        title: const Text('Shopping List'),
         backgroundColor: Colors.grey.shade400,
       ),
-      body: Column(
-        children: [
-
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        backgroundColor: Colors.grey.shade400,
-        child: const Icon(Icons.add),
-      )
+      body: const Text('Shopping List'),
     );
   }
 }

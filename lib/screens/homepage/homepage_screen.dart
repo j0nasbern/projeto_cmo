@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'homepage_button.dart';
 import '/data/data_storage.dart';
-import '../ingredients/ingredient.dart';
-import '../recipe.dart';
-import '../shoplist.dart';
+import '../ingredients/ingredient_screen.dart';
+import '../recipe/recipe_screen.dart';
+import '../shoplist/shoplist_screen.dart';
 
+// Classe de Homepage da app
+//
+// Recebe um data storage que envia para todos os próximos
+// ecrãs que vão ser abertos. Utiliza um custom widget
+// HomepageButton para os butões do menu.
 class HomepageScreen extends StatelessWidget {
   final DataStorage _dataStorage;
 
@@ -18,7 +23,6 @@ class HomepageScreen extends StatelessWidget {
         backgroundColor: Colors.grey.shade400,
       ),
       body: Center(
-        // Column with the homepage buttons
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -27,7 +31,8 @@ class HomepageScreen extends StatelessWidget {
               height: 30,
               width: 150,
             ),
-            HomepageButton('Shopping List', ShopList(_dataStorage)),
+            // <<NÃO IMPLEMENTADO>>
+            // HomepageButton('Shopping List', ShopListScreen(_dataStorage)),
             const SizedBox(
               height: 30,
               width: 150,
@@ -37,7 +42,8 @@ class HomepageScreen extends StatelessWidget {
               height: 30,
               width: 150,
             ),
-            HomepageButton('Recipes', Recipe(_dataStorage))
+            // <<NÃO IMPLEMENTADO>>
+            // HomepageButton('Recipes', RecipeScreen(_dataStorage))
           ],
         ),
       ),

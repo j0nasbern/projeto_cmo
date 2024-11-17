@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_cmo/screens/ingredients/ingredient.dart';
+import '/data/ingredient.dart';
+import 'ingredient_screen.dart';
 
-
+// Class _IngredientFormState
+//
+// Estado do IngredientForm. Recebe a instância do estado
+// do IngredientsScreen para utilizar e modificar a lista
+// de ingredientes. Utiliza um TextEditingController para
+// obter o texto do TextFormField para guardar como nome
+// do ingrediente.
 class _IngredientFormState extends State<IngredientForm> {
   TextEditingController textController = TextEditingController();
   final String _title,_ingredientName;
-  List<String> _ingredientList = [];
-  IngredientsScreenState _state;
+  List<Ingredient> _ingredientList = [];
+  final IngredientsScreenState _state;
 
   _IngredientFormState(this._state, this._title, this._ingredientName) {
     _ingredientList = _state.getIngredientList();
@@ -41,14 +48,22 @@ class _IngredientFormState extends State<IngredientForm> {
           
         ],
       ),
+// FloatingActionButton para confirmar as mudanças no
+// ingrediente. Caso o nome inicial seja '' (espaço em
+// branco), significa que está a ser adicionado um
+// ingrediente e por isso é adicionado no fim da lista.
+// Caso um ingrediente esteja a ser modificado, procura
+// na lista o elemento com o mesmo nome do que o nome
+// inicial e altera o nome. De seguida atualiza a lista
+// do estado do IngredientsScreen.
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           if (_ingredientName.toLowerCase().compareTo('') == 0) {
-            _ingredientList.add(textController.text);
+            _ingredientList.add(Ingredient(textController.text));
           } else {
             for (int i = 0; i < _ingredientList.length; i++) {
-              if (_ingredientList[i].toLowerCase().compareTo(_ingredientName) == 0){
-                _ingredientList[i] = textController.text;
+              if (_ingredientList[i].getName().toLowerCase().compareTo(_ingredientName) == 0){
+                _ingredientList[i].setName(textController.text);
               }
             }
           }
@@ -61,6 +76,11 @@ class _IngredientFormState extends State<IngredientForm> {
   }
 }
 
+// Classe IngredientForm
+//
+// Recebe informações iniciais para definir se está a ser
+// criado um ingrediente novo ou se um ingrediente está a
+// ser alterado, e cria o estado para o form.
 class IngredientForm extends StatefulWidget {
   final bool _isNew;
   String _title = '';
@@ -69,6 +89,8 @@ class IngredientForm extends StatefulWidget {
 
 
   IngredientForm(this._state, this._isNew, [this._ingredientName = '']) {
+// Altera o titulo da appBar dependendo de se está a ser
+// criado um ingrediente novo ou se está a ser alterado.
     if (_isNew) {
       _title = 'Add Ingredient';
     } else {

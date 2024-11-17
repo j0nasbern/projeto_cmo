@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
-// Class for a custom widget for the homepage buttons
+// Classe de HomepageButton
+//
+// Botão costumizado para o menu inicial da app. Recebe o
+// nome do proximo ecrã e o widget do próximo ecrã.
 class HomepageButton extends StatelessWidget {
   final String _text;
   final Widget _nextScreen;
